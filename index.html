@@ -83,7 +83,6 @@
     <div id="gameContainer">
       <canvas id="gameCanvas"></canvas>
       <div id="messageOverlay" style="display: none">
-        {/* Start hidden, showMessage will display it */}
         <h2 id="messageText">Game Over!</h2>
         <button id="restartButton">Play Again</button>
       </div>
@@ -596,7 +595,7 @@
       function movePacman() {
         const currentGridX = Math.round(pacman.x / GRID_SIZE - 0.5);
         const currentGridY = Math.round(pacman.y / GRID_SIZE - 0.5);
-        const movementAmount = GRID_SIZE / 4; // Move 1/4th grid cell
+        const movementAmount = GRID_SIZE / 12; // Move 1/12th grid cell (3x slower)
 
         if (
           Math.abs(pacman.x - (currentGridX * GRID_SIZE + GRID_SIZE / 2)) <
@@ -722,7 +721,7 @@
 
       function moveGhosts() {
         ghosts.forEach((ghost) => {
-          const movementAmount = (GRID_SIZE / 4) * ghost.speedFactor;
+          const movementAmount = (GRID_SIZE / 12) * ghost.speedFactor; // 3x slower
           const currentGridX = Math.round(ghost.x / GRID_SIZE - 0.5);
           const currentGridY = Math.round(ghost.y / GRID_SIZE - 0.5);
 
@@ -936,7 +935,7 @@
       }
 
       let lastFrameTime = 0;
-      const FRAME_DURATION = 1000 / 60; // Target 60 FPS
+      const FRAME_DURATION = 1000 / 60; // Target 60 FPS (leave as is for smooth animation)
 
       function gameLoop(currentTime) {
         if (!lastFrameTime) lastFrameTime = currentTime;
