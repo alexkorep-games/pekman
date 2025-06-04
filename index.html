@@ -233,6 +233,7 @@
           0, 0, 0, 0, 0, 0, 0,
         ],
       ];
+      const originalMap = map.map((row) => row.slice());
       const MAP_ROWS = map.length;
       const MAP_COLS = map[0].length;
       canvas.width = MAP_COLS * GRID_SIZE;
@@ -329,16 +330,21 @@
 
       function fullResetGame() {
         // Called for new game
-        initPacman();
-        initGhosts();
-        score = 0;
-        lives = 3;
-        dotsCount = 0; // Recalculate dots
+        for (let y = 0; y < MAP_ROWS; y++) {
+          for (let x = 0; x < MAP_COLS; x++) {
+            map[y][x] = originalMap[y][x];
+          }
+        }
+        dotsCount = 0;
         map.forEach((row) =>
           row.forEach((cell) => {
             if (cell === 2 || cell === 3) dotsCount++;
           })
         );
+        initPacman();
+        initGhosts();
+        score = 0;
+        lives = 3;
         powerPelletActive = false;
         powerPelletTimer = 0;
         ghostsEatenThisPowerup = 0;
