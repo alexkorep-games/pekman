@@ -912,6 +912,30 @@ function initGame() {
         }
       });
 
+      canvas.addEventListener("pointerdown", (e) => {
+        if (
+          gamePaused ||
+          gameOver ||
+          messageOverlay.style.display !== "none"
+        )
+          return;
+
+        const rect = canvas.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const clickY = e.clientY - rect.top;
+
+        const dx = clickX - pacman.x;
+        const dy = clickY - pacman.y;
+
+        if (Math.abs(dx) > Math.abs(dy)) {
+          pacman.nextDx = dx > 0 ? GRID_SIZE : -GRID_SIZE;
+          pacman.nextDy = 0;
+        } else {
+          pacman.nextDx = 0;
+          pacman.nextDy = dy > 0 ? GRID_SIZE : -GRID_SIZE;
+        }
+      });
+
       // ---- INITIAL SETUP ----
       // 1. Prepare all game data and visual elements BEFORE showing the initial message.
       fullResetGame(); // This sets up pacman, ghosts, score, lives, dots, and sets gamePaused = false initially.
