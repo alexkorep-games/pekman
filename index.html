@@ -15,25 +15,33 @@
         background-color: #111;
         font-family: "Arial", sans-serif;
         color: #fff;
+        overflow-x: hidden; /* Prevent horizontal scrollbar */
       }
       #gameContainer {
         border: 5px solid #0033cc;
         box-shadow: 0 0 20px #0077ff, 0 0 30px #0077ff inset;
         background-color: #000;
         position: relative; /* For absolute positioning of messages */
+        width: 100%;
+        max-width: 600px;
+        box-sizing: border-box;
       }
       canvas {
         display: block;
+        width: 100%;
+        height: auto;
       }
       #uiContainer {
         display: flex;
         justify-content: space-between;
-        width: 600px; /* Match canvas width or adjust as needed */
+        width: 100%;
+        max-width: 600px; /* Match canvas width */
         margin-top: 15px;
         padding: 10px;
         background-color: #222;
         border-radius: 8px;
         box-shadow: 0 0 10px #444;
+        box-sizing: border-box;
       }
       #score,
       #lives {
