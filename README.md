@@ -1,3 +1,7 @@
+# Demo
+
+https://github.com/user-attachments/assets/dcf76e1a-df97-4dd5-8bb4-9d881a155513
+
 # Pac-Man Clone
 
 This project ports the Pac-Man clone to a simple React application. A minimal development server is included so you can try it locally.
