@@ -309,7 +309,7 @@
           ghost.y = GHOST_SPAWNS[i].y * GRID_SIZE;
           ghost.isFrightened = false;
           ghost.isEaten = false;
-          ghost.dx = i === 0 ? -GRID_SIZE : 0; // Blinky moves, others wait
+          ghost.dx = i === 0 ? -GRID_SIZE : 0; // Blinky moves left; other ghosts start moving upward
           ghost.dy = i !== 0 ? -GRID_SIZE : 0; // Others try to move up
           if (i === 0) {
             // Blinky starts outside
