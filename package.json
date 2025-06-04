@@ -1,0 +1,16 @@
+{
+  "name": "pekman",
+  "version": "1.0.0",
+  "description": "https://github.com/user-attachments/assets/dcf76e1a-df97-4dd5-8bb4-9d881a155513",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
