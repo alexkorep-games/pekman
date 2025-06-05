@@ -912,17 +912,10 @@ function initGame() {
         }
       });
 
-      canvas.addEventListener("pointerdown", (e) => {
-        if (
-          gamePaused ||
-          gameOver ||
-          messageOverlay.style.display !== "none"
-        )
-          return;
-
+      function handleDirectionInput(clientX, clientY) {
         const rect = canvas.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const clickY = e.clientY - rect.top;
+        const clickX = clientX - rect.left;
+        const clickY = clientY - rect.top;
 
         const dx = clickX - pacman.x;
         const dy = clickY - pacman.y;
@@ -934,7 +927,32 @@ function initGame() {
           pacman.nextDx = 0;
           pacman.nextDy = dy > 0 ? GRID_SIZE : -GRID_SIZE;
         }
+      }
+
+      function pointerInputAllowed() {
+        return (
+          !gamePaused &&
+          !gameOver &&
+          messageOverlay.style.display === "none"
+        );
+      }
+
+      canvas.addEventListener("pointerdown", (e) => {
+        if (!pointerInputAllowed()) return;
+        e.preventDefault();
+        handleDirectionInput(e.clientX, e.clientY);
       });
+
+      canvas.addEventListener(
+        "touchstart",
+        (e) => {
+          if (!pointerInputAllowed()) return;
+          e.preventDefault();
+          const touch = e.touches[0];
+          if (touch) handleDirectionInput(touch.clientX, touch.clientY);
+        },
+        { passive: false }
+      );
 
       // ---- INITIAL SETUP ----
       // 1. Prepare all game data and visual elements BEFORE showing the initial message.
